@@ -1,24 +1,24 @@
-import './public-path'
+import "./public-path";
 import { createApp } from "vue";
 import { createRouter, createWebHistory } from "vue-router";
 import App from "./App.vue";
 import routes from "./router";
 import store from "./store";
-import actions from './shared';
+import actions from "./shared";
 
 let app = null;
 let router = null;
 
 function render(props) {
-  actions.setActions(props)
+  actions.setActions(props);
   const { container } = props;
   router = createRouter({
     history: createWebHistory(window.__POWERED_BY_QIANKUN__ ? "/vue/" : "/"),
     routes
   });
-  app = createApp(App)
-  app.use(store)
-  app.use(router)
+  app = createApp(App);
+  app.use(store);
+  app.use(router);
   app.mount(container ? container.querySelector("#app") : "#app");
 }
 
