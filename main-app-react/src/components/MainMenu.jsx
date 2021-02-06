@@ -5,15 +5,10 @@ import { Link } from 'react-router-dom'
 export default function MainMenu(props) {
   const { menus } = props
   const [{ key: defaultSelectedKeys }] = menus
-  console.log(defaultSelectedKeys)
-  const clickHandler = ({item}) => {
-    console.log(item)
-  }
   return (
     <Menu
       mode="inline"
       defaultSelectedKeys={[defaultSelectedKeys]}
-      onClick={clickHandler}
     >
       {
         menus.map(menu => (
