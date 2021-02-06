@@ -7,20 +7,18 @@
 
 <script>
 // @ is an alias to /src
-import { ref } from 'vue'
-import actions from '../shared'
+import { ref } from "vue";
+import SharedModule from "../shared";
 
 export default {
   name: "Home",
   setup() {
-    const name = ref('')
-    actions.onGlobalStateChange(state => {
-      console.log('micro app vue state', state)
-      name.value = state.name
-    }, true)
+    const name = ref("");
+    const shared = SharedModule.getShared();
+    name.value = shared.getName();
     return {
       name
-    }
+    };
   }
 };
 </script>

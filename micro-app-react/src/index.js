@@ -4,11 +4,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import actions from './shared';
+import SharedModule from './shared';
 
 function render(props) {
-  actions.setActions(props);
-  const { container } = props;
+  const { container, shared = SharedModule.getShared() } = props;
+  SharedModule.overloadShared(shared)
   ReactDOM.render(
     <React.StrictMode>
       <App />

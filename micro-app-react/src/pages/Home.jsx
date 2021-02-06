@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import actions from '../shared';
+import SharedModule from '../shared';
 
 export default function Home() {
   const [name, setName] = useState('');
   useEffect(() => {
-    actions.onGlobalStateChange(state => {
-      console.log('micro app react state', state)
-      setName(state.name)
-    }, true)
+    const shared = SharedModule.getShared()
+    setName(shared.getName())
   }, [])
   return (
     <div>

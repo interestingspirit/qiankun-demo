@@ -1,6 +1,20 @@
-import { initGlobalState } from 'qiankun'
+import store from '../store'
 
-const initialState = {}
-const actions = initGlobalState(initialState)
+class Shared {
+  getName() {
+    const state = store.getState()
+    return state.name || ''
+  }
 
-export default actions
+  setName(name) {
+    const { dispatch } = store
+    dispatch({
+      type: 'SET_NAME',
+      payload: name
+    })
+  }
+}
+
+const shared = new Shared()
+
+export default shared

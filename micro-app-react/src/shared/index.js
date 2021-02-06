@@ -1,29 +1,23 @@
-const emptyAction = () => {
-  console.error('这个action是空的')
-}
-class Actions {
-  actions = {
-    setGlobalState: emptyAction,
-    onGlobalStateChange: emptyAction,
+class Shared {
+  getName() {
+    return localStorage.getItem('name') || ''
   }
-
-  setActions(actions) {
-    if (actions) {
-      const { setGlobalState, onGlobalStateChange } = actions
-      this.actions.setGlobalState = setGlobalState
-      this.actions.onGlobalStateChange = onGlobalStateChange
-    }
-  }
-
-  setGlobalState(...args) {
-    return this.actions.setGlobalState(...args)
-  }
-
-  onGlobalStateChange(...args) {
-    return this.actions.onGlobalStateChange(...args)
+  setName(name) {
+    localStorage.setItem('name', name)
   }
 }
 
-const actions = new Actions()
+class SharedModule {
+  static shared = new Shared()
 
-export default actions
+  static overloadShared(shared) {
+    SharedModule.shared = shared
+  }
+
+  static getShared() {
+    return SharedModule.shared
+  }
+
+}
+
+export default SharedModule
