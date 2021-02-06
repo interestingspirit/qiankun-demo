@@ -4,8 +4,10 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import actions from './shared';
 
 function render(props) {
+  actions.setActions(props);
   const { container } = props;
   ReactDOM.render(
     <React.StrictMode>
