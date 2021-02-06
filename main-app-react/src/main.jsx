@@ -1,7 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
+import 'antd/dist/antd.css'
 import App from './App'
+import startQiankun from './micro'
+
+startQiankun()
 
 ReactDOM.render(
   <React.StrictMode>

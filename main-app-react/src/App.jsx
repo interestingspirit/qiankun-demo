@@ -1,44 +1,50 @@
 import React, { useState } from 'react'
-import logo from './logo.svg'
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import BasicLayout from './layout/BasicLayout'
+import Home from './pages/Home';
 import './App.css'
 
+const menus = [
+    {
+      key: "Home",
+      title: "主页",
+      path: "/"
+    },
+    {
+      key: "VueMicroApp",
+      title: "Vue 主页",
+      path: "/vue"
+    },
+    {
+      key: "VueMicroAppList",
+      title: "Vue 列表页",
+      path: "/vue/list"
+    },
+    {
+      key: "ReactMicroApp",
+      title: "React 主页",
+      path: "/react"
+    },
+    {
+      key: "ReactMicroAppList",
+      title: "React 列表页",
+      path: "/react/list"
+    },
+  ];
+
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello Vite + React!</p>
-        <p>
-          <button onClick={() => setCount((count) => count + 1)}>
-            count is: {count}
-          </button>
-        </p>
-        <p>
-          Edit <code>App.jsx</code> and save to test HMR updates.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          {' | '}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
-          </a>
-        </p>
-      </header>
-    </div>
+    <BrowserRouter className="App">
+      <BasicLayout menus={menus}>
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route path="*">
+            <div id="container"></div>
+          </Route>
+        </Switch>
+      </BasicLayout>
+    </BrowserRouter>
   )
 }
 
